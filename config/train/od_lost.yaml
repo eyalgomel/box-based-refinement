@@ -1,0 +1,48 @@
+data:
+  train: 
+    data_path: null
+    dataset: VOC07
+    image_size: 304
+  val:
+    data_path: null
+    val_path: ${data.val.data_path}
+    dataset: ${data.train.dataset}
+    image_size: 304
+
+training:
+  num_boxes: 10
+  num_classes: 1
+  box:
+    lr: 1e-5
+    weight_decay: 1e-4
+    steps: 10
+  dino:
+    lr: 1e-5
+    weight_decay: 1e-4
+    steps: 45
+  batch_size: 16
+  epochs: 70
+  samples_per_epoch: 1000
+  box_warmup_epochs: 10
+  evaluation_freq: 5
+  num_workers: 10
+  gpu_num: 1
+  image_size: ${data.train.image_size}
+  box_loss_weights:
+    loss_ce: 0.1
+    loss_bbox: 5
+    loss_giou: 2
+  dino_loss_coef: 1
+  use_qkv_feats: True
+  mask_threshold: 0.5
+  hm_mask_threshold: ${training.mask_threshold}
+  box_mask_threshold: ${training.mask_threshold}
+  
+  pretrained_box: null
+
+exp_name: LOST
+logs:
+  results_dir: ./results
+
+inference:
+  use_qkv_feats: ${training.use_qkv_feats}

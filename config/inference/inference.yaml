@@ -1,0 +1,21 @@
+num_workers: 10
+num_boxes: 10
+gpu_num: 1
+batch_size: 32
+task: od_move # {od_lost, od_tokencut, od_move, grounding}
+
+data:  
+  val_path: null
+  data_path: ${data.val_path}
+  dataset: VOC07 # {flickr, referit, vg, VOC07, VOC12, coco20k}
+  image_size: 304
+
+move_segmenter:
+  feature_extractor: dino_vits8
+  extractor_block_layer: -2
+  segmenter_head: conv_minc128
+  mae_as_feature_extractor: False
+
+model_path: null
+box_model_path: null
+

@@ -1,0 +1,21 @@
+[submodule "LOST"]
+	path = LOST
+	url = https://github.com/valeoai/LOST.git
+[submodule "moveseg"]
+	path = moveseg
+	url = https://github.com/adambielski/move-seg.git
+[submodule "TokenCut"]
+	path = TokenCut
+	url = https://github.com/YangtaoWANG95/TokenCut.git
+[submodule "CLIP"]
+	path = CLIP
+	url = https://github.com/openai/CLIP.git
+[submodule "BLIP"]
+	path = BLIP
+	url = https://github.com/salesforce/BLIP.git
+[submodule "detr"]
+	path = detr
+	url = https://github.com/facebookresearch/detr.git
+[submodule "dino"]
+	path = dino
+	url = https://github.com/facebookresearch/dino.git

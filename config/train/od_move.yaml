@@ -1,0 +1,57 @@
+data:
+  train: 
+    data_path: null
+    dataset: VOC07
+    image_size: 304
+  val:
+    data_path: null
+    val_path: ${data.val.data_path}
+    dataset: ${data.train.dataset}
+    image_size: 304
+
+training:
+  num_boxes: 10
+  num_classes: 1
+  box:
+    lr: 1e-5
+    weight_decay: 1e-4
+    steps: 10
+  move:
+    model_path: null
+    lr: 1e-4
+    betas: [0.9, 0.95]
+    weight_decay: 1e-4
+    steps: 70
+    train_multi_box: True
+    use_scheduler: True
+    scheduler:
+      power: 2
+    segmenter:
+      feature_extractor: dino_vits8
+      extractor_block_layer: -2
+      segmenter_head: conv_minc128
+      mae_as_feature_extractor: False
+  batch_size: 32
+  epochs: 70
+  samples_per_epoch: 1000
+  box_warmup_epochs: 10
+  evaluation_freq: 2
+  num_workers: 10
+  gpu_num: 2
+  image_size: ${data.train.image_size}
+  box_loss_weights:
+    loss_ce: 0.1
+    loss_bbox: 5
+    loss_giou: 2
+  move_loss_coef: 1
+  move_reg_coef: 0
+  move_loss_fn: mse
+  mask_threshold: 0.5
+  hm_mask_threshold: ${training.mask_threshold}
+  box_mask_threshold: ${training.mask_threshold}
+  
+  pretrained_box: null
+
+exp_name: Move
+logs:
+  results_dir: ./results

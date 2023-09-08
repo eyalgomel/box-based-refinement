@@ -1,0 +1,5 @@
+.vscode/*
+*.pyc
+results/*
+outputs/*
+bbr.egg-info/*

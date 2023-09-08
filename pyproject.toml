@@ -1,0 +1,30 @@
+[tool.ruff]
+line-length = 120
+src = ["bbr"]
+exclude = [
+"BLIP",
+"CLIP",
+"detr",
+"dino",
+"LOST",
+"moveseg",
+"TokenCut",
+"build",
+]
+
+
+[tool.black]
+line-length = 120
+extend-exclude = '''
+(
+^/BLIP/|
+^/CLIP/|
+^/detr/|
+^/dino/|
+^/LOST/|
+^/moveseg/|
+^/TokenCut/|
+^/build/
+)
+'''
+

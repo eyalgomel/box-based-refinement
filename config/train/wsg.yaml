@@ -1,0 +1,54 @@
+data:
+  train: 
+    data_path: null
+    dataset: coco
+    image_size: 304
+  val:
+    data_path: null
+    val_path: ${data.val.data_path}
+    dataset: flickr
+    image_size: 304
+
+training:
+  heatmap_model: null
+  num_boxes: 10
+  pred_union: 0.5
+  box:
+    lr: 1e-5
+    weight_decay: 1e-4
+    steps: 10
+  heatmap:
+    lr: 1e-7
+    weight_decay: 1e-4
+    steps: 30
+  batch_size: 36
+  epochs: 25
+  samples_per_epoch: 10000
+  box_warmup_epochs: 10
+  evaluation_freq: 5
+  num_workers: 8
+  gpu_num: 1
+  image_size: ${data.train.image_size}
+  box_loss_weights:
+    loss_ce: 2
+    loss_bbox: 5
+    loss_giou: 2
+  wsg_loss_factor: 2
+  wsg_loss_weights:
+    wsg_reg: 0.5  
+    wsg_clip: 32
+    wsg_bg: 1
+    wsg_fr: 0.5
+
+  mask_threshold: 0.5
+  hm_mask_threshold: ${training.mask_threshold}
+  box_mask_threshold: ${training.mask_threshold}
+  
+  pretrained_box: null
+
+exp_name: wsg
+logs:
+  results_dir: ./results
+
+inference:
+  mask_threshold: 0.5
